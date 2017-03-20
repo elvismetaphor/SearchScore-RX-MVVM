@@ -1,4 +1,4 @@
-package edu.self.scoredbmvvm;
+package edu.self.scorerxmvvm;
 
 import org.junit.Test;
 

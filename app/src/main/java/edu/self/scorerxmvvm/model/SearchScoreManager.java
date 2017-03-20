@@ -1,4 +1,4 @@
-package edu.self.scoredbmvvm.model;
+package edu.self.scorerxmvvm.model;
 
 
 import android.os.SystemClock;

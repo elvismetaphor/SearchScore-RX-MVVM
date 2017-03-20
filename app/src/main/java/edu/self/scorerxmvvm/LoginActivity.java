@@ -1,4 +1,4 @@
-package edu.self.scoredbmvvm;
+package edu.self.scorerxmvvm;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

@@ -1,4 +1,4 @@
-package edu.self.scoredbmvvm;
+package edu.self.scorerxmvvm;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
