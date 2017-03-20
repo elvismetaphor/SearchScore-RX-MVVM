@@ -1,1 +1,1 @@
-# SearchScore which implements MVVM by Data binding
+# SearchScore which implements MVVM by RxJava 
