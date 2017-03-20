@@ -1,42 +1,32 @@
 package edu.self.scorerxmvvm.viewmodel;
 
-
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.os.AsyncTask;
-
 import edu.self.scorerxmvvm.model.SearchScoreManager;
+
+import io.reactivex.Observable;
+import io.reactivex.subjects.BehaviorSubject;
+
 
 public class SearchViewModel {
 
-    private Context context;
-    private ProgressDialog progressDialog;
+    private BehaviorSubject<String> scoreValue;
 
-    public SearchViewModel(Context context) {
-        this.context = context;
+    public SearchViewModel() {
+        scoreValue = BehaviorSubject.create();
     }
 
-    public void searchScore(String userName) {
-        new AsyncTask<String, Void, Long>() {
+    public void searchScore(final String userName) {
 
+        new Thread(new Runnable() {
             @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                progressDialog = ProgressDialog.show(context, "Search the score", "searching...", true);
+            public void run() {
+                Long score = SearchScoreManager.getInstance().searchScoreForLongTime(userName);
+                scoreValue.onNext(score == null ? "Not Exist!" : String.valueOf(score));
             }
+        }).start();
 
-            @Override
-            protected Long doInBackground(String... strings) {
-                return SearchScoreManager.getInstance().searchScoreForLongTime(strings[0]);
-            }
+    }
 
-            @Override
-            protected void onPostExecute(Long score) {
-                super.onPostExecute(score);
-                progressDialog.dismiss();
-            }
-
-        }.execute(userName);
-
+    public Observable<String> getScoreValueObservable() {
+        return scoreValue;
     }
 }
