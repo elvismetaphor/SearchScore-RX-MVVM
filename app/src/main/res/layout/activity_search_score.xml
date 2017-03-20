@@ -1,0 +1,54 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="edu.self.scoredbmvvm.viewmodel.SearchViewModel"/>
+    </data>
+
+    <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center_horizontal"
+              android:orientation="vertical"
+              android:paddingBottom="@dimen/activity_vertical_margin"
+              android:paddingLeft="@dimen/activity_horizontal_margin"
+              android:paddingRight="@dimen/activity_horizontal_margin"
+              android:paddingTop="@dimen/activity_vertical_margin"
+              tools:context="edu.self.scoredbmvvm.SearchScoreActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="@dimen/edit_text_padding"
+                android:textSize="@dimen/edit_text_text_size"
+                app:addTextChangedListener="@{viewModel.userNameEditTextWatcher}"/>
+
+            <Button
+                android:layout_width="@dimen/search_button_size"
+                android:layout_height="@dimen/search_button_size"
+                android:layout_gravity="center_vertical"
+                android:src="@android:drawable/ic_menu_search"
+                android:background="@android:color/darker_gray"
+                android:onClick="@{() -> viewModel.searchScore()}"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|top"
+            android:textSize="@dimen/result_text_size"
+            android:text="@{viewModel.userScore}"/>
+
+    </LinearLayout>
+
+</layout>
